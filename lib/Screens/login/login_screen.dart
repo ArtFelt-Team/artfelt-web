@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:web_backoffice/constants.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -49,15 +50,26 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Padding(padding: EdgeInsets.only(top: defaultPadding)),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
-                ),
+              TextButton(
                 onPressed: () => {
-
-              }, 
-              child: Text(
-                "Login"
+                  Navigator.pushNamed(context, RoutesNames.dashboard)
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                width: MediaQuery.of(context).size.width / 8,
+                height: MediaQuery.of(context).size.width / 40,
+                child: Text(
+                  "LOGIN",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                    color: Colors.white,
+                    fontSize: 28
+                  ),
+                ),
               ))
           ],
         ),

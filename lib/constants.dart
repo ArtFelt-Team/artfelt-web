@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class RoutesNames {
   static String login = "/login";
+  static String dashboard = "/";
 }
-
 
 const primaryColor = Color(0xFFFF63CA);
 const secondaryColor = Color(0xFF2A2D3E);

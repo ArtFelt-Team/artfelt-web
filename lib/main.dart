@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:web_backoffice/Screens/dashboard/dashboard_screen.dart';
 import 'package:web_backoffice/Screens/login/login_screen.dart';
 import 'package:web_backoffice/constants.dart';
 
@@ -22,9 +23,10 @@ class MyApp extends StatelessWidget {
         canvasColor: secondaryColor,
         
       ),
-      initialRoute: RoutesNames.login,
+      initialRoute: RoutesNames.dashboard,
       routes:  {
-        RoutesNames.login: (_) => LoginScreen()
+        RoutesNames.login: (_) => LoginScreen(),
+        RoutesNames.dashboard: (_) => DashboardScreen()
       },
     );
   }
