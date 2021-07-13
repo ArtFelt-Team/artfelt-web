@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:web_backoffice/constants.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -17,37 +18,30 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Home",
             svgSrc: "icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              Navigator.pushReplacementNamed(context, RoutesNames.dashboard);
+            },
           ),
           DrawerListTile(
-            title: "Transaction",
-            svgSrc: "icons/menu_tran.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Request",
+            title: "Requests",
             svgSrc: "icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "icons/menu_doc.svg",
-            press: () {},
+            press: () {
+              Navigator.pushReplacementNamed(context, RoutesNames.request);
+            },
           ),
           DrawerListTile(
             title: "Store",
             svgSrc: "icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "icons/menu_notification.svg",
-            press: () {},
+            press: () {
+              Navigator.pushReplacementNamed(context, RoutesNames.artwork);
+            },
           ),
           DrawerListTile(
             title: "Profile",
             svgSrc: "icons/menu_profile.svg",
-            press: () {},
+            press: () {
+              Navigator.pushReplacementNamed(context, RoutesNames.profile);
+            },
           ),
         ],
       ),
