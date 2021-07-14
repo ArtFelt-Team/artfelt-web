@@ -104,7 +104,7 @@ class UserList extends StatelessWidget {
                                     title: Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment
-                                          .spaceBetween, 
+                                          .spaceBetween,
                                       children: [
                                         Text((snapshot.data as dynamic)[index]?.lastName ?? " Last Name"),
                                         Text((snapshot.data as dynamic)[index].firstName ?? " First Name"),
