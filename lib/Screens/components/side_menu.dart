@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:web_backoffice/constants.dart';
 
 class SideMenu extends StatelessWidget {
@@ -13,34 +14,41 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("images/logo.png"),
+            child: Image.asset("images/artfelt-logo-transparent-light.png"),
           ),
           DrawerListTile(
             title: "Home",
-            svgSrc: "icons/menu_dashbord.svg",
+            icon: FaIcon(FontAwesomeIcons.user),
             press: () {
-              Navigator.pushReplacementNamed(context, RoutesNames.dashboard);
+              Navigator.pushNamed(context, RoutesNames.dashboard);
             },
           ),
           DrawerListTile(
             title: "Requests",
-            svgSrc: "icons/menu_notification.svg",
+            icon: FaIcon(FontAwesomeIcons.paperPlane),
             press: () {
-              Navigator.pushReplacementNamed(context, RoutesNames.request);
+              Navigator.pushNamed(context, RoutesNames.request);
             },
           ),
-          DrawerListTile(
+          /*DrawerListTile(
             title: "Store",
-            svgSrc: "icons/menu_store.svg",
+            icon: FaIcon(FontAwesomeIcons.store),
             press: () {
-              Navigator.pushReplacementNamed(context, RoutesNames.artwork);
+              Navigator.pushNamed(context, RoutesNames.shop);
+            },
+          ),*/
+          DrawerListTile(
+            title: "Associations",
+            icon: FaIcon(FontAwesomeIcons.store),
+            press: () {
+              Navigator.pushNamed(context, RoutesNames.association);
             },
           ),
           DrawerListTile(
             title: "Profile",
-            svgSrc: "icons/menu_profile.svg",
+            icon: FaIcon(FontAwesomeIcons.userCircle),
             press: () {
-              Navigator.pushReplacementNamed(context, RoutesNames.profile);
+              Navigator.pushNamed(context, RoutesNames.profile);
             },
           ),
         ],
@@ -54,11 +62,12 @@ class DrawerListTile extends StatelessWidget {
     Key? key,
     // For selecting those three line once press "Command+D"
     required this.title,
-    required this.svgSrc,
+    required this.icon,
     required this.press,
   }) : super(key: key);
 
-  final String title, svgSrc;
+  final String title;
+  final FaIcon icon;
   final VoidCallback press;
 
   @override
@@ -66,11 +75,7 @@ class DrawerListTile extends StatelessWidget {
     return ListTile(
       onTap: press,
       horizontalTitleGap: 0.0,
-      leading: SvgPicture.asset(
-        svgSrc,
-        color: Colors.white54,
-        height: 16,
-      ),
+      leading: icon,
       title: Text(
         title,
         style: TextStyle(color: Colors.white54),

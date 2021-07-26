@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:web_backoffice/Models/Association.dart';
 import 'package:web_backoffice/Screens/dashboard/dashboard_screen.dart';
 import 'package:web_backoffice/Screens/dashboard/pages/Artworks/artwork_screen.dart';
+import 'package:web_backoffice/Screens/dashboard/pages/Association/association_screen.dart';
 import 'package:web_backoffice/Screens/dashboard/pages/Profile/profile_screen.dart';
 import 'package:web_backoffice/Screens/dashboard/pages/Requests/request_screen.dart';
 import 'package:web_backoffice/Screens/dashboard/pages/Users/user_screen.dart';
@@ -30,9 +32,10 @@ class MyApp extends StatelessWidget {
         RoutesNames.login: (context) => LoginScreen(),
         RoutesNames.dashboard: (context) => DashboardScreen(),
         RoutesNames.request: (context) => RequestScreen(),
-        RoutesNames.artwork: (context) => ArtworkScreen(),
+        RoutesNames.shop: (context) => ShopScreen(),
         RoutesNames.users: (context) => UserScreen(),
-        RoutesNames.profile: (context) => ProfileScreen()
+        RoutesNames.profile: (context) => ProfileScreen(),
+        RoutesNames.association: (context) => AssociationScreen()
       },
     );
   }

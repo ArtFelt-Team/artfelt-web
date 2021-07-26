@@ -1,35 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:web_backoffice/Models/user.dart';
+import 'package:web_backoffice/Services/user_service.dart';
+
+import '../../../../../constants.dart';
 
 class UserPopUp extends StatelessWidget {
+  final User user;
+
+  UserPopUp({Key? key, required this.user}): super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 25.0),
-      child: Container(
-          width: double.infinity,
-          height: double.infinity,
+    return AlertDialog(
+      //insetPadding: EdgeInsets.symmetric(horizontal: 400.0, vertical: 25.0),
+      content: Container(
+          width: MediaQuery.of(context).size.width / 4,
+          //height: double.infinity,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width / 7,
-                  height: MediaQuery.of(context).size.width / 7,
+                  width: MediaQuery.of(context).size.width / 10,
+                  height: MediaQuery.of(context).size.width / 10,
                   decoration: BoxDecoration(
                       color: Colors.purple,
                       borderRadius: BorderRadius.circular(100)),
                 ),
-                Text("First Name"),
-                Text("Last Name"),
-                Text("Username"),
-                Text("mail@mailmail.com"),
-                Text("Adresse"),
-                Text("First Name"),
+                buildTextRow(field: "Last Name:", data: user.lastName??"No Last Name Found"),
+                buildTextRow(field: "First Name:", data: user.firstName??"No Last Name Found"),
+                buildTextRow(field: "Username:", data: user.username??"No UsernameFound"),
+                buildTextRow(field: "Mail:", data: user.mail??"No Mail Found"),
+                buildTextRow(field: "Adress:", data: "${user.addressStreet}, ${user.addressCity}, ${user.adrressZipcode}"),
+
               ],
             ),
           )),
+      actions: [
+        InkWell(
+          onTap: ()async{
+            var response = await UserService.delete(user);
+            if(response.statusCode == 204){
+              print(response.statusCode);
+              Navigator.pushNamed(context, RoutesNames.dashboard);
+            } else {
+              print(response.statusCode);
+            }
+          },
+          child: Container(
+            width: 100,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Text(
+              "Delete",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lato(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30
+              ),
+            ),
+          ),
+        )
+      ],
     );
+  }
+
+  Row buildTextRow({
+    required String field,
+    required String data
+}) {
+    return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    field,
+                    style: GoogleFonts.lato(
+                      fontSize: 25,
+                    ),
+                  ),
+                  Text(
+                    data,
+                    style: GoogleFonts.lato(
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
+              );
   }
 }
 
