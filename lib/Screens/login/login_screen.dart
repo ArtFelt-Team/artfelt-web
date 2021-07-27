@@ -23,8 +23,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             Expanded(
               flex:2,
-              child: SvgPicture.asset(
-                "login_image.svg",
+              child: Image.asset(
+                "images/artfelt-logo-text-dark.png",
               ),
             ),
             Expanded(
