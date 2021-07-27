@@ -12,10 +12,16 @@ class RoutesNames {
 }
 
 const primaryColor = Color(0xFFFF63CA);
-const secondaryColor = Color(0xFF6C73F6);
-const bgColor = Color(0xFFFFFFFF);
+const secondaryColor = Color(0xff1b202a);
+const bgColor = Color(0xFF0d1117);
 
 const defaultPadding = 16.0;
 
-const baseURL = "http://192.168.1.31:7701/v1/";
+const baseURL = "http://178.62.93.242:7701/v1/";
 LocalStorage store = new LocalStorage('data.json');
+
+class StatusEnum{
+ static String pending = "PENDING";
+ static String approved = "APPROUVED";
+ static String declined = "DECLINED";
+}

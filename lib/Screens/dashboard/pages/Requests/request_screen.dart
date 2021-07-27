@@ -195,15 +195,9 @@ Future<void> _showCustomDialog({required BuildContext context, required Request 
           actions: [
             InkWell(
                 onTap: () async {
-                  var newRequest = new Request(
-                      id: request.id,
-                      status: "APPROVED",
-                      type: request.type,
-                      message: request.message
-                  );
-                  var response = await RequestService.updateStatus(newRequest);
+                  var response = await RequestService.updateArtistStatus(request, StatusEnum.approved);
                   if(response.statusCode == 200){
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, RoutesNames.request);
                   }
                 },
                 child: Container(
@@ -224,13 +218,7 @@ Future<void> _showCustomDialog({required BuildContext context, required Request 
                 )),
             InkWell(
                 onTap: () async {
-                  var newRequest = new Request(
-                    id: request.id,
-                    status: "DECLINED",
-                    type: request.type,
-                    message: request.message
-                  );
-                  var response = await RequestService.updateStatus(newRequest);
+                  var response = await RequestService.updateArtistStatus(request, StatusEnum.declined);
                   if(response.statusCode == 200){
                     Navigator.pushNamed(context, RoutesNames.request);
                   }

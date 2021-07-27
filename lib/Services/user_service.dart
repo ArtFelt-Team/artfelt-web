@@ -10,7 +10,7 @@ class UserService {
   static Future<List<User>> getUsers() async {
     List<User> users = [];
     var url = Uri.parse(
-        "http://192.168.1.31:7701/v1/user/all");
+        baseURL+"/user/all");
     var response = await http.get(
       url,
       headers: {

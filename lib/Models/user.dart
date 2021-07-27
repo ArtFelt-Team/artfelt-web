@@ -9,20 +9,21 @@ class User {
   final String? adrressZipcode;
   final String? mail;
   final String? role;
+  final String? avatarURL;
 
 
-  User(
-      {
-        this.id,
+  User({this.id,
       this.lastName,
       this.firstName,
       this.username,
-        this.password,
+      this.password,
       this.addressStreet,
       this.addressCity,
       this.adrressZipcode,
       this.mail,
-      this.role});
+      this.role,
+      this.avatarURL
+      });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -35,7 +36,9 @@ class User {
         addressStreet: json['address_street'],
         addressCity: json['address_city'],
         adrressZipcode: json['address_zip_code'],
-        role: json['role']);
+        role: json['role'],
+        avatarURL: json['avatar_url']
+    );
   }
   Map<String, dynamic> toJson() {
     return <String, String?>{

@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web_backoffice/Models/user.dart';
@@ -12,9 +14,10 @@ class UserPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: secondaryColor,
       //insetPadding: EdgeInsets.symmetric(horizontal: 400.0, vertical: 25.0),
       content: Container(
-          width: MediaQuery.of(context).size.width / 4,
+          width: MediaQuery.of(context).size.width / 3,
           //height: double.infinity,
           child: SingleChildScrollView(
             child: Column(
@@ -42,6 +45,10 @@ class UserPopUp extends StatelessWidget {
           onTap: ()async{
             var response = await UserService.delete(user);
             if(response.statusCode == 204){
+              if(user.id == window.localStorage["userID"]) {
+                window.localStorage.clear();
+                Navigator.pushNamed(context, RoutesNames.login);
+              }
               print(response.statusCode);
               Navigator.pushNamed(context, RoutesNames.dashboard);
             } else {

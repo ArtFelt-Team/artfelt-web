@@ -22,17 +22,15 @@ class RequestService {
     return requests;
   }
   
-  static Future<http.Response> updateStatus(Request request) async {
+  static Future<http.Response> updateArtistStatus(Request request, String message) async {
     var url = Uri.parse(baseURL+'request/'+request.id!.toString());
-    return await http.put(url,
+    return await http.post(url,
       headers:  {
         'Authorization': window.localStorage["token"]!,
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-          'type': request.type!,
-          'message': request.message!,
-          'status': request.status!
+          'message': message,
         })
     );
   }

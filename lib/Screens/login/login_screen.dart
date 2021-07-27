@@ -68,6 +68,7 @@ class LoginScreen extends StatelessWidget {
                     print("I'm in");
                     window.localStorage.addAll(<String, String>{
                       "token":body["token"],
+                      "userID":body["user_id"],
                     });
                     print(window.localStorage["token"]);
                     Navigator.pushNamed(context, RoutesNames.dashboard);
