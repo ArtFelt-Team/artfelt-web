@@ -24,12 +24,17 @@ class UserPopUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 10,
-                  height: MediaQuery.of(context).size.width / 10,
-                  decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(100)),
+                ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                      maxWidth: MediaQuery.of(context).size.width/4,
+                      maxHeight: MediaQuery.of(context).size.height/4,
+                    ),
+                    child: CircleAvatar(
+                        radius: 60.0,
+                        backgroundImage:
+                        NetworkImage(user.avatarURL ?? "https://via.placeholder.com/150"))
                 ),
                 buildTextRow(field: "Last Name:", data: user.lastName??"No Last Name Found"),
                 buildTextRow(field: "First Name:", data: user.firstName??"No Last Name Found"),

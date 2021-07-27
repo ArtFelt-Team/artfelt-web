@@ -107,6 +107,7 @@ class _RequestListViewState extends State<RequestListView> {
 List<DataRow> requestRows( BuildContext context,List<Request> requests) {
   FaIcon icon= FaIcon(FontAwesomeIcons.paintBrush);
   Color color = Colors.orangeAccent;
+  Widget action;
   List<DataRow> rows = [];
   requests.forEach((element) {
     if(element.type == 'ARTIST_REQUEST') {
@@ -123,6 +124,20 @@ List<DataRow> requestRows( BuildContext context,List<Request> requests) {
     } else {
       color = Colors.green;
     }
+
+    if(element.status == 'DECLINED' || element.status == 'APPROVED'){
+      action = Container();
+    } else {
+      action = TextButton(
+        onPressed: (){
+          _showCustomDialog(context: context,request: element);
+        },
+        child: Text("Take Action",
+          style: GoogleFonts.lato(
+              color: Colors.white
+          ),),
+      );
+    }
     rows.add(DataRow(
         cells: [
       DataCell(icon),
@@ -136,15 +151,7 @@ List<DataRow> requestRows( BuildContext context,List<Request> requests) {
           )
       ),
       DataCell(
-        TextButton(
-          onPressed: (){
-            _showCustomDialog(context: context,request: element);
-          },
-          child: Text("Take Action",
-          style: GoogleFonts.lato(
-            color: Colors.white
-          ),),
-        )
+        action
       )
     ]));
   });

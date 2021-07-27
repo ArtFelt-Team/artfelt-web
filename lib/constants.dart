@@ -22,6 +22,6 @@ LocalStorage store = new LocalStorage('data.json');
 
 class StatusEnum{
  static String pending = "PENDING";
- static String approved = "APPROUVED";
+ static String approved = "APPROVED";
  static String declined = "DECLINED";
 }

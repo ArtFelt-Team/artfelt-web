@@ -322,3 +322,40 @@ Future<void> _showAssociationDialog(BuildContext context, Association associatio
     );
   });
 }
+
+Widget _editableOption() {
+  final TextEditingController _nameController = new TextEditingController();
+  final TextEditingController _descriptionController = new TextEditingController();
+  final TextEditingController _ibanController = new TextEditingController();
+  final TextEditingController _bicController = new TextEditingController();
+  return Container(
+    child: Column(
+      children: [
+        TextFormField(
+          controller: _nameController,
+          decoration: InputDecoration(
+              hintText: "Insert name"
+          ),
+        ),
+        TextFormField(
+          controller: _descriptionController,
+          decoration: InputDecoration(
+              hintText: "Insert description"
+          ),
+        ),
+        TextFormField(
+          controller: _ibanController,
+          decoration: InputDecoration(
+              hintText: "Insert IBAN"
+          ),
+        ),
+        TextFormField(
+          controller: _bicController,
+          decoration: InputDecoration(
+              hintText: "Insert BIC"
+          ),
+        ),
+      ],
+    ),
+  );
+}
