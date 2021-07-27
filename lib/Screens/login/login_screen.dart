@@ -23,8 +23,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             Expanded(
               flex:2,
-              child: SvgPicture.asset(
-                "login_image.svg",
+              child: Image.asset(
+                "images/artfelt-logo-text-dark.png",
               ),
             ),
             Expanded(
@@ -68,6 +68,7 @@ class LoginScreen extends StatelessWidget {
                     print("I'm in");
                     window.localStorage.addAll(<String, String>{
                       "token":body["token"],
+                      "userID":body["user_id"],
                     });
                     print(window.localStorage["token"]);
                     Navigator.pushNamed(context, RoutesNames.dashboard);

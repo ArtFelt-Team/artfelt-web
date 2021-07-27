@@ -14,7 +14,7 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("images/artfelt-logo-transparent-light.png"),
+            child: Image.asset("images/artfelt-logo-text-dark.png"),
           ),
           DrawerListTile(
             title: "Home",
@@ -44,13 +44,13 @@ class SideMenu extends StatelessWidget {
               Navigator.pushNamed(context, RoutesNames.association);
             },
           ),
-          DrawerListTile(
+          /*DrawerListTile(
             title: "Profile",
             icon: FaIcon(FontAwesomeIcons.userCircle),
             press: () {
               Navigator.pushNamed(context, RoutesNames.profile);
             },
-          ),
+          ),*/
         ],
       ),
     );

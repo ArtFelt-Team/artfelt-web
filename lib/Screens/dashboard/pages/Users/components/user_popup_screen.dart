@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web_backoffice/Models/user.dart';
@@ -12,21 +14,27 @@ class UserPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: secondaryColor,
       //insetPadding: EdgeInsets.symmetric(horizontal: 400.0, vertical: 25.0),
       content: Container(
-          width: MediaQuery.of(context).size.width / 4,
+          width: MediaQuery.of(context).size.width / 3,
           //height: double.infinity,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 10,
-                  height: MediaQuery.of(context).size.width / 10,
-                  decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(100)),
+                ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                      maxWidth: MediaQuery.of(context).size.width/4,
+                      maxHeight: MediaQuery.of(context).size.height/4,
+                    ),
+                    child: CircleAvatar(
+                        radius: 60.0,
+                        backgroundImage:
+                        NetworkImage(user.avatarURL ?? "https://via.placeholder.com/150"))
                 ),
                 buildTextRow(field: "Last Name:", data: user.lastName??"No Last Name Found"),
                 buildTextRow(field: "First Name:", data: user.firstName??"No Last Name Found"),
@@ -42,6 +50,10 @@ class UserPopUp extends StatelessWidget {
           onTap: ()async{
             var response = await UserService.delete(user);
             if(response.statusCode == 204){
+              if(user.id == window.localStorage["userID"]) {
+                window.localStorage.clear();
+                Navigator.pushNamed(context, RoutesNames.login);
+              }
               print(response.statusCode);
               Navigator.pushNamed(context, RoutesNames.dashboard);
             } else {

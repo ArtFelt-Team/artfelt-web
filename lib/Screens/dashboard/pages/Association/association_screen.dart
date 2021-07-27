@@ -68,25 +68,28 @@ class AssociationScreen extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
-                                          InkWell(
-                                            onTap: (){
-                                              _showNewAssociationDialog(context);
-                                            },
-                                            child: Container(
-                                                  width: 100,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.green,
-                                                      borderRadius: BorderRadius.circular(15)
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Text(
-                                                      "Add Association",
-                                                      textAlign: TextAlign.center,
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 16.0),
+                                            child: InkWell(
+                                              onTap: (){
+                                                _showNewAssociationDialog(context);
+                                              },
+                                              child: Container(
+                                                    width: 100,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.green,
+                                                        borderRadius: BorderRadius.circular(15)
                                                     ),
-                                                  ),
-                                            ),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: Text(
+                                                        "Add Association",
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    ),
+                                              ),
                                          ),
+                                          ),
                                         ],
                                       )),
                                   Expanded(
@@ -207,7 +210,7 @@ Future<void> _showNewAssociationDialog(BuildContext context) async {
               var response = await AssociationService.addAssociation(asso);
               print(response.statusCode);
               if(response.statusCode == 201) {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, RoutesNames.association);
               } else if (response.statusCode == 401) {
 
               }
@@ -318,4 +321,41 @@ Future<void> _showAssociationDialog(BuildContext context, Association associatio
       ],
     );
   });
+}
+
+Widget _editableOption() {
+  final TextEditingController _nameController = new TextEditingController();
+  final TextEditingController _descriptionController = new TextEditingController();
+  final TextEditingController _ibanController = new TextEditingController();
+  final TextEditingController _bicController = new TextEditingController();
+  return Container(
+    child: Column(
+      children: [
+        TextFormField(
+          controller: _nameController,
+          decoration: InputDecoration(
+              hintText: "Insert name"
+          ),
+        ),
+        TextFormField(
+          controller: _descriptionController,
+          decoration: InputDecoration(
+              hintText: "Insert description"
+          ),
+        ),
+        TextFormField(
+          controller: _ibanController,
+          decoration: InputDecoration(
+              hintText: "Insert IBAN"
+          ),
+        ),
+        TextFormField(
+          controller: _bicController,
+          decoration: InputDecoration(
+              hintText: "Insert BIC"
+          ),
+        ),
+      ],
+    ),
+  );
 }

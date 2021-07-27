@@ -243,7 +243,7 @@ class _UserFutureBuilderState extends State<UserFutureBuilder> {
                                   child: CircleAvatar(
                                       radius: 30.0,
                                       backgroundImage:
-                                      NetworkImage("https://googleflutter.com/sample_image.jpg"))
+                                      NetworkImage(users[index].avatarURL ?? "https://via.placeholder.com/150"))
                               ),
                               title: Row(
                                 mainAxisAlignment:

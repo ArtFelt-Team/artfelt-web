@@ -157,6 +157,7 @@ class _AddUserPopUpFormState extends State<AddUserPopUpForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
               controller: _passwordController,
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Enter your password",
