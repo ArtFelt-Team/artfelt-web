@@ -19,9 +19,7 @@ class _HeaderState extends State<Header> {
   @override
   void initState() {
     UserService.refreshToken().then((res) => {
-      if(res.statusCode == 200) {
-        window.localStorage["token"] = res.headers["token"]!
-      } else {
+      if(res.statusCode != 200) {
         window.localStorage.clear(),
         Navigator.pushNamed(context, RoutesNames.login)
       }
